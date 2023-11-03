@@ -35,7 +35,7 @@ def predict_dysarthria(audio_file):
         mfcc_features = np.mean(librosa.feature.mfcc(y=y, sr=sr, n_mfcc=256), axis=1)
         mfcc_features = mfcc_features.reshape(-1, 16, 8, 1)
 
-        model = tf.keras.models.load_model("gru_model.h5")
+        model = tf.keras.models.load_model("gru_model (1).h5")
 
         prediction = model.predict(mfcc_features)
         print(prediction)
@@ -103,11 +103,11 @@ if page == "Home":
     st.markdown("<h1 style='text-align: center;'>Dysarthria Speech Defect Recognition</h1>", unsafe_allow_html=True)
     st.markdown("---")
 
-    col1, col2 = st.columns([0.4,0.8])
-    col1.image('home.png')
+    col1, col2 = st.columns([0.3,0.8])
+    col1.image('home3.png')
     with open('writeup.txt','r') as writeup:
         summary = writeup.read()
-    col2.markdown(summary)
+    col2.markdown(f"<p style='text-align: justify;'>{summary}</p>", unsafe_allow_html=True)
 
 
 elif page == "Detection":

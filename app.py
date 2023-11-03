@@ -35,7 +35,7 @@ def predict_dysarthria(audio_file):
         mfcc_features = np.mean(librosa.feature.mfcc(y=y, sr=sr, n_mfcc=256), axis=1)
         mfcc_features = mfcc_features.reshape(-1, 16, 8, 1)
 
-        model = tf.keras.models.load_model("gru_model (1).h5")
+        model = tf.keras.models.load_model("gru_model.h5")
 
         prediction = model.predict(mfcc_features)
         print(prediction)

@@ -13,7 +13,7 @@ from gtts import gTTS
 def speech_to_text_to_speech(audio_file):
     # tokenizer = Wav2Vec2Tokenizer.from_pretrained("facebook/wav2vec2-large-960h-lv60-self")
     # wave2vec_model = Wav2Vec2ForCTC.from_pretrained("facebook/wav2vec2-large-960h-lv60-self")
-    whisper_model = whisper.load_model("large")
+    whisper_model = whisper.load_model("base")
     options = {"language": "en", "task": "transcribe"}
 
     audio, sampling_rate = librosa.load(audio_file, sr=16000)
@@ -35,7 +35,7 @@ def predict_dysarthria(audio_file):
         mfcc_features = np.mean(librosa.feature.mfcc(y=y, sr=sr, n_mfcc=256), axis=1)
         mfcc_features = mfcc_features.reshape(-1, 16, 8, 1)
 
-        model = tf.keras.models.load_model("gru_model (1).h5")
+        model = tf.keras.models.load_model("gru_model.h5")
 
         prediction = model.predict(mfcc_features)
         print(prediction)
@@ -104,7 +104,7 @@ if page == "Home":
     st.markdown("---")
 
     col1, col2 = st.columns([0.3,0.8])
-    col1.image('home3.png')
+    col1.image('home.png')
     with open('writeup.txt','r') as writeup:
         summary = writeup.read()
     col2.markdown(f"<p style='text-align: justify;'>{summary}</p>", unsafe_allow_html=True)
